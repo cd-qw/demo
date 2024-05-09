@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="XbclMes.MainPage" Shell.NavBarIsVisible="False" xmlns:e="clr-namespace:XbclMes.Models" x:Name="mainPage">
+
+    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow">
+        
+        <FlyoutBase.ContextFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Text="重新加载"
+                            Clicked="reload"
+                            CommandParameter="docs" />
+                <MenuFlyoutItem Text="设置"
+                            Clicked="MenuFlyoutItem_Clicked"
+                            CommandParameter="eng" />
+            </MenuFlyout>
+        </FlyoutBase.ContextFlyout>
+        
+    </WebView>-->
+    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow" BindingContext="{x:Reference mainPage}">
+        <the49:ContextMenu.Menu>
+            <DataTemplate>
+                <the49:Menu>
+                    <the49:Action Title="重新加载" Command="{Binding Reload}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"> </the49:Action>
+                    <the49:Action Title="设置" Command="{Binding Set}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
+                </the49:Menu>
+            </DataTemplate>
+        </the49:ContextMenu.Menu>
+    </WebView>-->
+
+    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow" BindingContext="{x:Reference mainPage}">
+        <the49:ContextMenu.Menu>
+            <DataTemplate>
+                <the49:Menu>
+                    <the49:Action Title="重新加载" Command="{Binding Reload}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
+                    <the49:Action Title="设置" Command="{Binding Set}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
+                </the49:Menu>
+            </DataTemplate>
+        </the49:ContextMenu.Menu>
+    </WebView>-->
+
+    <AbsoluteLayout>
+        <WebView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow">
+
+        </WebView>
+        <ImageButton AbsoluteLayout.LayoutFlags="PositionProportional" Opacity="0.2" Source="refresh.png" AbsoluteLayout.LayoutBounds="1,0.8" Clicked="reload"  BackgroundColor="LightGray" HeightRequest="30" WidthRequest="30"  CornerRadius="28" Margin="10"> 
+            
+        </ImageButton>
+        <ImageButton AbsoluteLayout.LayoutFlags="PositionProportional" Opacity="0.2" Source="setting.png" AbsoluteLayout.LayoutBounds="0,0.8" BackgroundColor="LightGray" HeightRequest="30" WidthRequest="30" CornerRadius="28" Margin="10"  Clicked="set">
+
+        </ImageButton>
+    </AbsoluteLayout>
+    
+</ContentPage>
