@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.Maui.Controls.PlatformConfiguration;
+using Newtonsoft.Json.Linq;
 using SqlSugar;
 using System.Windows.Input;
 using XbclMes.Entity;
@@ -11,6 +12,7 @@ namespace XbclMes
     {
         string url = "";
 
+        System.Timers.Timer timer;
 
         ISqlSugarClient _db;
 
@@ -20,7 +22,57 @@ namespace XbclMes
             Reload = new Command(() => reload(this, new EventArgs()));
             Set = new Command(() => set(this, new EventArgs()));
 
+            timer = new System.Timers.Timer();
+            timer.Interval = 5000;
+            timer.Stop();
+            timer.Elapsed += Timer_Elapsed;
+
+            this.webView.Loaded += WebView_Loaded;
+
             this.Loaded += MainPage_Loaded;
+        }
+
+        private void WebView_Loaded(object? sender, EventArgs e)
+        {
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+
+        private async void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
+        {
+            try
+            {
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    SaveCache();
+                });
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        private async void SaveCache()
+        {
+            try
+            {
+                string tempUrl = await this.webView.EvaluateJavaScriptAsync("window.location.href");
+
+                var entity = await _db.Queryable<AppConfig>().FirstAsync();
+
+                entity.TempUrl = tempUrl;
+
+                await _db.Updateable(entity).ExecuteCommandAsync();
+
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         public ICommand Reload { set; get; }
@@ -35,8 +87,16 @@ namespace XbclMes
 
             if (entity != null)
             {
-                this.url = entity.Url;
-                this.webView.Source = entity.Url;
+                if (string.IsNullOrEmpty(entity.TempUrl))
+                {
+                    this.url = entity.Url;
+                }
+                else
+                {
+                    this.url = entity.TempUrl;
+                }
+
+                this.webView.Source = this.url;
             }
 
 #if ANDROID
@@ -46,7 +106,7 @@ namespace XbclMes
 #endif
         }
 
-        public void reload(object sender,EventArgs e)
+        public async void reload(object sender, EventArgs e)
         {
             this.webView.Reload();
         }
@@ -54,7 +114,7 @@ namespace XbclMes
         public async void set(object sender, EventArgs e)
         {
             var entity = await _db.Queryable<AppConfig>().FirstAsync();
-            string result = await DisplayPromptAsync("设置", "Url","确定","取消",initialValue:entity?.Url);
+            string result = await DisplayPromptAsync("设置", "Url", "确定", "取消", initialValue: entity?.Url);
 
             if (string.IsNullOrEmpty(result))
             {
@@ -77,5 +137,4 @@ namespace XbclMes
             this.url = result;
         }
     }
-
 }

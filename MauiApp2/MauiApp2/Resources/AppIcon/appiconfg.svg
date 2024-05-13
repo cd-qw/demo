@@ -1,0 +1,13 @@
+<svg width="456" height="456" xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="458" height="458" id="canvas_background" fill="none"/>
+ </g>
+
+ <g>
+  <title>Layer 1</title>
+  <path d="m105.50037,281.60863c-2.70293,0 -5.00091,-0.90042 -6.89313,-2.70209c-1.89221,-1.84778 -2.8379,-4.04181 -2.8379,-6.58209c0,-2.58722 0.94569,-4.80389 2.8379,-6.65167c1.89222,-1.84778 4.1902,-2.77167 6.89313,-2.77167c2.74819,0 5.06798,0.92389 6.96019,2.77167c1.93749,1.84778 2.90581,4.06445 2.90581,6.65167c0,2.54028 -0.96832,4.73431 -2.90581,6.58209c-1.89221,1.80167 -4.212,2.70209 -6.96019,2.70209z" stroke-width="0.838376" fill-rule="nonzero" fill="#ffffff" id="svg_1"/>
+  <text fill="#000000" stroke-width="0" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" x="232" y="226.515625" id="svg_7" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="matrix(5.719356060028076,0,0,2.3776304721832275,-1094.8906059265137,-282.07206740263064) " stroke="null"/>
+  <text fill="#000000" stroke-width="0" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" x="190" y="227.515625" id="svg_10" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" transform="matrix(5.104605974752929,0,0,4.061347007751465,-877.1065477131457,-672.4022397074732) " stroke="null">MES</text>
+ </g>
+</svg>

@@ -5,42 +5,6 @@
              xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="XbclMes.MainPage" Shell.NavBarIsVisible="False" xmlns:e="clr-namespace:XbclMes.Models" x:Name="mainPage">
 
-    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow">
-        
-        <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-                <MenuFlyoutItem Text="重新加载"
-                            Clicked="reload"
-                            CommandParameter="docs" />
-                <MenuFlyoutItem Text="设置"
-                            Clicked="MenuFlyoutItem_Clicked"
-                            CommandParameter="eng" />
-            </MenuFlyout>
-        </FlyoutBase.ContextFlyout>
-        
-    </WebView>-->
-    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow" BindingContext="{x:Reference mainPage}">
-        <the49:ContextMenu.Menu>
-            <DataTemplate>
-                <the49:Menu>
-                    <the49:Action Title="重新加载" Command="{Binding Reload}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"> </the49:Action>
-                    <the49:Action Title="设置" Command="{Binding Set}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
-                </the49:Menu>
-            </DataTemplate>
-        </the49:ContextMenu.Menu>
-    </WebView>-->
-
-    <!--<WebView x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow" BindingContext="{x:Reference mainPage}">
-        <the49:ContextMenu.Menu>
-            <DataTemplate>
-                <the49:Menu>
-                    <the49:Action Title="重新加载" Command="{Binding Reload}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
-                    <the49:Action Title="设置" Command="{Binding Set}" CommandParameter="mainPage" IsEnabled="True" IsVisible="True"></the49:Action>
-                </the49:Menu>
-            </DataTemplate>
-        </the49:ContextMenu.Menu>
-    </WebView>-->
-
     <AbsoluteLayout>
         <WebView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" x:Name="webView"  android:WebView.MixedContentMode="AlwaysAllow">
 
