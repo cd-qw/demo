@@ -100,9 +100,9 @@ namespace XbclMes
                     this.url = entity.TempUrl;
                 }
 
-                //this.webView.Source = this.url;
+                this.webView.Source = this.url;
 
-                this.webView.Source = "https://192.168.14.251/CamstarWeb/#/";
+                //this.webView.Source = "https://192.168.14.251/CamstarWeb/#/";
             }
 
 
