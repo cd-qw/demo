@@ -1,5 +1,6 @@
 ﻿using Android.Net.Http;
 using Android.Webkit;
+using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,10 @@ namespace XbclMes.Platforms.Android
             handler.Proceed();
         }
 
+        public override bool ShouldOverrideUrlLoading(global::Android.Webkit.WebView? view, string? url)
+        {
+            view.LoadUrl(url);
+            return true;
+        }
     }
 }

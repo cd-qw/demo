@@ -81,7 +81,11 @@ namespace XbclMes
 
         private void MainPage_Loaded(object? sender, EventArgs e)
         {
+#if ANDROID
+    
+    XbclMes.Platforms.Android.SslHandler.SetSsl(this.webView);
 
+#endif
             this._db = Handler.MauiContext.Services.GetService<ISqlSugarClient>();
             var entity = _db.Queryable<AppConfig>().First();
 
@@ -96,18 +100,19 @@ namespace XbclMes
                     this.url = entity.TempUrl;
                 }
 
-                this.webView.Source = this.url;
+                //this.webView.Source = this.url;
+
+                this.webView.Source = "https://192.168.14.251/CamstarWeb/#/";
             }
 
-#if ANDROID
-    
-    XbclMes.Platforms.Android.SslHandler.SetSsl(this.webView);
 
-#endif
+
         }
 
         public async void reload(object sender, EventArgs e)
         {
+            var height = DeviceDisplay.Current.MainDisplayInfo.Height;
+            var width = DeviceDisplay.MainDisplayInfo.Width;
             this.webView.Reload();
         }
 

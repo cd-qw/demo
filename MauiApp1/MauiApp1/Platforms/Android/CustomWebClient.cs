@@ -30,5 +30,8 @@ namespace XbclMes.Platforms.Android
             }
             base.OnPermissionRequest(request);
         }
+
+        
+        
     }
 }
