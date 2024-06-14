@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Storage;
 using SqlSugar;
-using The49.Maui.ContextMenu;
 
 namespace XbclMes
 {
@@ -13,7 +12,6 @@ namespace XbclMes
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseContextMenu()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
