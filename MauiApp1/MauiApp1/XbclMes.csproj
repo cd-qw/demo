@@ -43,13 +43,13 @@
 	  <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
 	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <EnableLLVM>True</EnableLLVM>
+	  <EnableLLVM>False</EnableLLVM>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
 	  <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
 	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <EnableLLVM>True</EnableLLVM>
+	  <EnableLLVM>False</EnableLLVM>
 	</PropertyGroup>
 
 	<ItemGroup>
