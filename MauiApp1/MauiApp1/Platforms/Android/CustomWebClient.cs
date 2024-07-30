@@ -27,11 +27,23 @@ namespace XbclMes.Platforms.Android
 
                     return;
                 }
+
+                if (resource.Equals(PermissionRequest.ResourceAudioCapture, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Get the status of the .NET MAUI app's access to the camera
+                    PermissionStatus status = Permissions.CheckStatusAsync<Permissions.Camera>().Result;
+
+                    // Deny the web page's request if the app's access to the camera is not "Granted"
+                    if (status != PermissionStatus.Granted)
+                        request.Deny();
+                    else
+                        request.Grant(request.GetResources());
+
+                    return;
+                }
             }
             base.OnPermissionRequest(request);
         }
 
-        
-        
     }
 }

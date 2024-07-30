@@ -23,6 +23,7 @@ namespace XbclMes.Platforms.Android
             web.Settings.AllowFileAccessFromFileURLs = true;
             web.Settings.JavaScriptCanOpenWindowsAutomatically = true;
             web.Settings.UseWideViewPort = true;
+            web.Settings.MediaPlaybackRequiresUserGesture = false;
 
             //硬件加速
             web.SetLayerType(global::Android.Views.LayerType.Hardware, null);

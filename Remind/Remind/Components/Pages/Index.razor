@@ -1,0 +1,88 @@
+﻿@page "/"
+@using Remind.Data
+@using SqlSugar
+@using Timer = System.Timers.Timer
+
+<div style="height:100vh;width:100vw;">
+    <div class="index-table">
+        <Table class="index-table" TItem="RemindRecord" Items="DataList" IsBordered="true" IsStriped="true" IsFixedHeader="true" >
+            <TableColumns>
+                <TableColumn @bind-Field="context.Name"></TableColumn>
+                <TableColumn @bind-Field="context.Time"></TableColumn>
+            </TableColumns>
+        </Table>
+    </div>
+    <div class="index-btn-container">
+        <Button OnClick="addRecord">响应</Button>
+    </div>
+</div>
+
+
+
+@inject ISqlSugarClient db
+@code{
+
+    Timer timer = new Timer();
+
+    private List<RemindRecord> DataList = new List<RemindRecord>();
+
+    int count = 0;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        EventBus.OnResume += onResume;
+        _ =  query();
+        timer.Enabled = true;
+        timer.Interval = 5000;
+        timer.Start();
+        timer.Elapsed += async (e,d) =>
+        {
+            await this.InvokeAsync( async ()=>
+            {
+                await this.query();
+                this.StateHasChanged();
+            });
+        };
+        
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    async void onResume(object sender, EventArgs e)
+    {
+        await this.query();
+    }
+
+    async Task<QueryData<RemindRecord>> query(QueryPageOptions options =null)
+    {
+        var list = await db.Queryable<RemindRecord>().OrderByDescending(x => x.Time).ToListAsync();
+
+        DataList = list;
+
+        QueryData<RemindRecord> res = new QueryData<RemindRecord>() { Items = list, TotalCount = list.Count };
+
+        if (DateTime.Now.Hour > 12)
+        {
+            var count = db.Queryable<RemindRecord>().Where(x => x.Time > DateTime.Today).Count();
+
+            if (count == 0)
+            {
+                Vibration.Vibrate(5000);
+            }
+        }
+
+        return res;
+    }
+
+    async void addRecord()
+    {
+        var item = new RemindRecord()
+        {
+            Time = DateTime.Now,
+            Name = "提醒"
+        };
+
+        await db.Insertable(item).ExecuteCommandAsync();
+
+        await this.query();
+    }
+}

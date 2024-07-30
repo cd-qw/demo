@@ -4,6 +4,9 @@ using Android.OS;
 using Android.Webkit;
 using XbclMes.Platforms.Android;
 using Microsoft.Maui.Platform;
+using AndroidX.Core.Content;
+using Android;
+using AndroidX.Core.App;
 
 namespace XbclMes
 {
@@ -19,6 +22,12 @@ namespace XbclMes
                 Android.Webkit.WebView.SetWebContentsDebuggingEnabled(true);
             }
 
+            
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            {
+                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.Camera }, 50);
+            }
         }
     }
 }

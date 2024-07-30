@@ -1,0 +1,10 @@
+﻿.index-table {
+    height:60%;
+    width:100%;
+}
+
+.index-btn-container {
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
